@@ -1,5 +1,8 @@
-#include <catch2/catch_test_macros.hpp>
+#include <cstdint>
 #include <random>
+
+#include <catch2/catch_test_macros.hpp>
+
 #include <VRegisterFile.h>
 
 static void tick(VRegisterFile& rf, int ticks = 1) {
@@ -94,6 +97,23 @@ TEST_CASE("Register File, Write/Read with we=0") {
     rf.srcB = i;
     tick(rf);
 
+    REQUIRE(rf.outDataA == i);
+    REQUIRE(rf.outDataB == i);
+  }
+}
+
+TEST_CASE("Register File, 32-bit word test") {
+  VRegisterFile rf;
+  init(rf);
+
+  rf.srcA = 1;
+  rf.srcB = 1;
+  rf.dst = 1;
+  rf.we = 1;
+
+  for(std::uint32_t i {1}; i; i <<= 1) {
+    rf.inData = i;
+    tick(rf, 2);
     REQUIRE(rf.outDataA == i);
     REQUIRE(rf.outDataB == i);
   }
