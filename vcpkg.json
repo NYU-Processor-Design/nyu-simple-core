@@ -1,0 +1,15 @@
+{
+  "name": "nyu-simple-core",
+  "version": "1.0.0",
+  "description": "NYU Processor Design's Simple RISCV Testing Core",
+  "homepage": "https://github.com/NYU-Processor-Design/nyu-simple-core",
+  "maintainers": [
+    "Vito Gamberini <vito@gamberini.email>"
+  ],
+  "license": "CC0-1.0",
+  "dependencies": [
+    "nyu-cmake",
+    "nyu-util",
+    "catch2"
+  ]
+}
